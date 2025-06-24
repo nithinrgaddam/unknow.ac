@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nithin Gaddam</title>
+    <title>Unknown - Transform PDFs into Living Stories</title>
     <style>
         * {
             margin: 0;
@@ -12,422 +12,579 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #1a1a1a;
             background: #fafafa;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 20px;
         }
 
-        .header {
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #6366f1;
+        }
+
+        .cta-button {
+            background: #6366f1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: #5856eb;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
             text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem 0;
-        }
-
-        .profile-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+            position: relative;
             overflow: hidden;
-            border: 3px solid #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .profile-image img {
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .primary-btn {
+            background: #6366f1;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .primary-btn:hover {
+            background: #5856eb;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: #6366f1;
+            padding: 15px 35px;
+            border: 2px solid #6366f1;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-btn:hover {
+            background: #6366f1;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Demo Video */
+        .demo-video {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            background: #000;
+            aspect-ratio: 16/9;
+            position: relative;
+        }
+
+        .video-placeholder {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-        }
-
-        .name {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 0.5rem;
-            color: #2c3e50;
-        }
-
-        .title {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            margin-bottom: 1rem;
-        }
-
-        .location {
-            color: #95a5a6;
-            font-size: 0.9rem;
-        }
-
-        .section {
-            background: white;
-            margin-bottom: 2rem;
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            color: #2c3e50;
-            border-bottom: 2px solid #ecf0f1;
-            padding-bottom: 0.5rem;
-        }
-
-        .experience-item {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid #ecf0f1;
-        }
-
-        .experience-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
-        .job-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .company-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            margin-right: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: bold;
             color: white;
-            font-size: 0.8rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .apple { background: #000; }
-        .logitech { background: #00b8d4; }
-        .scanify { background: #4ecdc4; }
-        .deloitte { background: #86bc25; }
-        .isro { background: #ff9500; }
-
-        .job-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c3e50;
+        .video-placeholder:hover {
+            transform: scale(1.02);
         }
 
-        .company {
-            color: #7f8c8d;
-            margin-bottom: 0.3rem;
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            backdrop-filter: blur(10px);
         }
 
-        .duration {
-            font-size: 0.9rem;
-            color: #95a5a6;
-            margin-bottom: 0.5rem;
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: white;
         }
 
-        .job-description {
-            color: #555;
-            margin-bottom: 1rem;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 30px;
+            border-radius: 20px;
+            background: #fafafa;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .feature-card p {
+            color: #666;
             line-height: 1.6;
         }
 
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background: #f8fafc;
         }
 
-        .skill-tag {
-            background: #ecf0f1;
-            color: #2c3e50;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
         }
 
-        .contact-info {
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #6366f1;
+            color: white;
+            border-radius: 50%;
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            margin-top: 1rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 0 auto 20px;
         }
 
-        .contact-item {
-            color: #7f8c8d;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .step h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1a1a1a;
         }
 
-        .contact-item:hover {
-            color: #3498db;
+        .step p {
+            color: #666;
+            line-height: 1.6;
         }
 
-        .linkedin-link {
-            background: #0077b5;
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
             color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 25px;
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #6366f1;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 119, 181, 0.3);
+            line-height: 1.8;
         }
 
-        .linkedin-link:hover {
-            background: #005885;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 119, 181, 0.4);
-            color: white;
+        .footer-section a:hover {
+            color: #6366f1;
         }
 
-        .linkedin-icon {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            color: #999;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 1rem;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
             }
-            
-            .name {
-                font-size: 2rem;
+
+            .hero h1 {
+                font-size: 2.5rem;
             }
-            
-            .section {
-                padding: 1.5rem;
-            }
-            
-            .contact-info {
+
+            .hero-buttons {
                 flex-direction: column;
-                gap: 1rem;
-                text-align: center;
+                align-items: center;
             }
+
+            .hero-buttons .primary-btn,
+            .hero-buttons .secondary-btn {
+                width: 250px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease forwards;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <div class="profile-image">
-                <img src="headshot.jpeg" alt="Nithin Gaddam">
-            </div>
-            <h1 class="name">Nithin Gaddam</h1>
-            <p class="title">Machine Learning & Full Stack iOS Engineer</p>
-            <p class="location">San Francisco Bay Area, California</p>
-            
-            <div class="contact-info">
-                <a href="https://www.linkedin.com/in/nithinreddygaddam" target="_blank" class="linkedin-link">
-                    <svg class="linkedin-icon" viewBox="0 0 24 24">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                    LinkedIn
-                </a>
-            </div>
-        </header>
+    <header>
+        <nav>
+            <a href="#" class="logo">Unknown</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+            <a href="#" class="cta-button">Download Beta</a>
+        </nav>
+    </header>
 
-        <section class="section">
-            <h2 class="section-title">Core Skills</h2>
-            <div class="skills">
-                <span class="skill-tag">Machine Learning</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Swift</span>
-                <span class="skill-tag">Objective-C</span>
-                <span class="skill-tag">iOS Development</span>
-                <span class="skill-tag">Large Language Models</span>
-                <span class="skill-tag">AI/ML</span>
-                <span class="skill-tag">GenAI</span>
-                <span class="skill-tag">SAP ABAP</span>
-                <span class="skill-tag">GIS</span>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Experience</h2>
-            
-            <div class="experience-item">
-                <div class="job-header">
-                    <div class="company-logo" style="background: #6366f1;">🚀</div>
-                    <div>
-                        <div class="job-title">Founder</div>
-                        <div class="company">Stealth Startup</div>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content fade-in-up">
+                    <h1>Transform PDFs into Living Stories</h1>
+                    <p>Interactive video books that convert your documents into engaging multimedia experiences. This is audiobooks 2.0, generated on-device with AI-powered visuals and narration.</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#" class="primary-btn">Try Free Beta</a>
+                        <a href="#demo" class="secondary-btn">Watch Demo</a>
                     </div>
-                </div>
-                <div class="duration">Jan 2024 - Present</div>
-            </div>
 
-            <div class="experience-item">
-                <div class="job-header">
-                    <div class="company-logo apple">🍎</div>
-                    <div>
-                        <div class="job-title">Software Engineer IV</div>
-                        <div class="company">Apple</div>
+                    <div class="demo-video" id="demo">
+                        <iframe src="https://drive.google.com/file/d/1viUpjMHXYmiQaMyrmdSGgIaYT_GLggQ_/preview" width="640" height="480" allow="autoplay"></iframe>
                     </div>
-                </div>
-                <div class="duration">Sep 2021 - Jan 2024 · 2 yrs 5 mos</div>
-                <div class="job-description">
-                    Worked on Siri ASR (AI/ML) team focusing on the CoreSpeech module. Evaluated multiple open source LLMs and implemented GenAI prototypes to enhance speech recognition capabilities.
-                </div>
-                <div class="skills">
-                    <span class="skill-tag">Machine Learning</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Objective-C</span>
-                    <span class="skill-tag">Large Language Models</span>
-                </div>
-            </div>
-
-            <div class="experience-item">
-                <div class="job-header">
-                    <div class="company-logo logitech">L</div>
-                    <div>
-                        <div class="job-title">Software Engineer III</div>
-                        <div class="company">Logitech</div>
-                    </div>
-                </div>
-                <div class="duration">Jul 2017 - Sep 2021 · 4 yrs 3 mos</div>
-                <div class="job-description">
-                    Developed and maintained Ultimate Ears Bluetooth and IoT speakers companion iOS apps for the App Store. Built prototypes and enabled continuous integration for QA/Production builds. Developed 2 private cocoapods to make code reusable across the organization.
-                </div>
-                <div class="skills">
-                    <span class="skill-tag">Swift</span>
-                    <span class="skill-tag">Objective-C</span>
-                    <span class="skill-tag">iOS Development</span>
-                </div>
-            </div>
-
-            <div class="experience-item">
-                <div class="job-header">
-                    <div class="company-logo scanify">S</div>
-                    <div>
-                        <div class="job-title">iOS Developer</div>
-                        <div class="company">Scanify</div>
-                    </div>
-                </div>
-                <div class="duration">Sep 2016 - Mar 2017 · 7 mos</div>
-                <div class="job-description">
-                    Single-handedly developed an iPad application from scratch to automate the process of flying DJI drones to scan real estate and send images/LiDAR data to the cloud. This enabled the creation of 3D models of buildings for shading analysis of solar panels.
-                </div>
-                <div class="skills">
-                    <span class="skill-tag">Swift</span>
-                    <span class="skill-tag">iOS Development</span>
-                    <span class="skill-tag">3D Modeling</span>
-                </div>
-            </div>
-
-            <div class="experience-item">
-                <div class="job-header">
-                    <div class="company-logo deloitte">D</div>
-                    <div>
-                        <div class="job-title">Business Technology Analyst</div>
-                        <div class="company">Deloitte</div>
-                    </div>
-                </div>
-                <div class="duration">Jun 2012 - Aug 2014 · 2 yrs 3 mos</div>
-                <div class="job-description">
-                    Worked as an SAP ABAP Developer developing enterprise solutions.
-                </div>
-                <div class="skills">
-                    <span class="skill-tag">SAP ABAP</span>
-                    <span class="skill-tag">Enterprise Software</span>
-                </div>
-            </div>
-
-            <div class="experience-item">
-                <div class="job-header">
-                    <div class="company-logo isro">🚀</div>
-                    <div>
-                        <div class="job-title">Research Intern</div>
-                        <div class="company">ISRO - Indian Space Research Organisation</div>
-                    </div>
-                </div>
-                <div class="duration">May 2011 - Aug 2011 · 4 mos</div>
-                <div class="job-description">
-                    At National Remote Sensing Center division of ISRO, developed a Drought Index system. Stored index values calculated from 20 years of rainfall data across India as spatial data and presented the values on a GIS map with pan and zoom capabilities.
-                </div>
-                <div class="skills">
-                    <span class="skill-tag">GIS</span>
-                    <span class="skill-tag">Data Analysis</span>
-                    <span class="skill-tag">Remote Sensing</span>
                 </div>
             </div>
         </section>
 
-        <section class="section">
-            <h2 class="section-title">Education</h2>
-            
-            <div class="experience-item">
-                <div class="job-header">
-                    <div class="company-logo" style="background: #0055a4;">🎓</div>
-                    <div>
-                        <div class="job-title">Master's Degree, Computer Software Engineering</div>
-                        <div class="company">San José State University</div>
-                    </div>
+        <section class="features" id="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Reimagine How You Consume Content</h2>
+                    <p>Stop consuming mindless entertainment. Start engaging with enriching content that adapts to your learning style.</p>
                 </div>
-                <div class="duration">2014 - 2016</div>
-                <div class="job-description">
-                    Activities and societies: Badminton and Table Tennis
-                </div>
-                <div class="skills">
-                    <span class="skill-tag">Machine Learning</span>
-                    <span class="skill-tag">Swift</span>
-                </div>
-            </div>
 
-            <div class="experience-item">
-                <div class="job-header">
-                    <div class="company-logo" style="background: #8b4513;">🏛️</div>
-                    <div>
-                        <div class="job-title">Bachelor's Degree, Computer Science Engineering</div>
-                        <div class="company">Osmania University</div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎬</div>
+                        <h3>AI-Generated Visuals</h3>
+                        <p>Every sentence gets contextual imagery, creating a cinematic experience that brings your documents to life.</p>
                     </div>
-                </div>
-                <div class="duration">2008 - 2012</div>
-                <div class="job-description">
-                    Activities and societies: Basketball and Badminton team
-                </div>
-                <div class="skills">
-                    <span class="skill-tag">Machine Learning</span>
-                </div>
-            </div>
 
-            <div class="experience-item">
-                <div class="job-header">
-                    <div class="company-logo" style="background: #2563eb;">🏫</div>
-                    <div>
-                        <div class="job-title">High School - Mathematics, Physics, Chemistry, Economics, Computer Science</div>
-                        <div class="company">International School of Seychelles</div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔊</div>
+                        <h3>Natural Narration</h3>
+                        <p>High-quality AI voices that adapt to content context, making complex topics accessible and engaging.</p>
                     </div>
-                </div>
-                <div class="duration">2000 - 2008</div>
-                <div class="job-description">
-                    A-Levels - University of Cambridge<br>
-                    Activities and societies: Cricket, Football, Table tennis, Basketball, Debate club, Film club
-                </div>
-                <div class="skills">
-                    <span class="skill-tag">Cambridge A-Levels</span>
-                    <span class="skill-tag">Computer Science</span>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Cross-Device Sync</h3>
+                        <p>Start on Mac, continue on iPhone, finish on Apple TV. Your progress syncs seamlessly across all devices.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>Privacy-First</h3>
+                        <p>All processing happens on-device. Your documents never leave your control or get sent to the cloud.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>Interactive Chat</h3>
+                        <p>Ask questions about your content. Get instant answers from an AI that understands your documents.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h3>Emotionally Intelligent</h3>
+                        <p>Adaptive design that motivates you to complete what you start, building better learning habits.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-    </div>
+        <section class="how-it-works" id="how-it-works">
+            <div class="container">
+                <div class="section-header">
+                    <h2>How It Works</h2>
+                    <p>Transform any PDF into an engaging multimedia experience in three simple steps.</p>
+                </div>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Upload Your PDF</h3>
+                        <p>Drag and drop any PDF document into the app. Research papers, books, reports – we handle them all.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>AI Processing</h3>
+                        <p>Our on-device AI analyzes your content, generates contextual images, and creates natural narration.</p>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Watch & Learn</h3>
+                        <p>Enjoy your transformed content as an interactive video book with synchronized visuals and audio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+
+            <div class="footer-bottom">
+                <p id="copyright">&copy; Unknown. Transforming how you consume content.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var currentYear = new Date().getFullYear();
+            // Select the paragraph by its ID
+            var copyright = document.getElementById('copyright');
+            // Update its HTML content to include the current year dynamically
+            copyright.innerHTML = '© ' + currentYear + ' Unkown | Transforming how you consume content.';
+          });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                header.style.background = 'rgba(250, 250, 250, 0.95)';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards and steps
+        document.querySelectorAll('.feature-card, .step').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
